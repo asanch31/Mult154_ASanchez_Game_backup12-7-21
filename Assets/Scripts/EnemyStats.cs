@@ -6,28 +6,37 @@ public class EnemyStats : MonoBehaviour
 {
     //how much dmg dopes player do
     private Weapon damage;
+    private SpawnManager waveNum;
 
-    private float fullHealth;
-    public float health = 1;
+    //private float fullHealth;
+    private float health = 3;
 
     public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
+        
+        
+        waveNum = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        int incDif = waveNum.waveNum / 3;
+        
+
+        health = health + (health * incDif);
+        
         //fullHealth = health;
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
-        //player interaction with ememy or hazards
+        //player interaction with enemy or hazards
         if (other.gameObject.CompareTag("attack"))
         {
-            health = 0;
+            health--;
             
-            Destroy(other);
+            Destroy(other.gameObject);
             Health();
-            print("attack");
+           
             //damage monster
 
             
@@ -37,17 +46,18 @@ public class EnemyStats : MonoBehaviour
         {
             if (health == 0)
             {
-            print("attack works");
+         
             Destroy(gameObject);
-            print("broken");
-        }
+            
+            }
 
         }
 
         // Update is called once per frame
         void Update()
         {
-
+       
+        
         }
     
 }

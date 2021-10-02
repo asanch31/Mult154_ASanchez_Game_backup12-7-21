@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private GameManager playerAlive;
+
     Rigidbody enemyRB;
     GameObject player;
     public float maxSpeed = 75.0f;
@@ -16,6 +18,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAlive = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.Find("Player");
         enemyRB = GetComponent<Rigidbody>();
 
@@ -24,14 +27,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = Random.Range(minSpeed, maxSpeed);
-        if (transform.position.y< yBoundary)
-        {
-            Destroy(gameObject);
-        }
+        //if (playerAlive.gamePause == false)
+       // {
+            float speed = Random.Range(minSpeed, maxSpeed);
+            if (transform.position.y < yBoundary)
+            {
+                Destroy(gameObject);
+            }
+           
 
-        Vector3 seekDirection = (player.transform.position - transform.position).normalized;
-        enemyRB.AddForce(seekDirection * speed * Time.deltaTime);
+            Vector3 seekDirection = (player.transform.position - transform.position).normalized;
+            enemyRB.AddForce(seekDirection * speed * Time.deltaTime);
 
+        //}
+        
     }
 }

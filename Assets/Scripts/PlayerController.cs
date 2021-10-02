@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private PlayerHealth playerCtrl;
-    private int minionCount;
+   
     private Rigidbody rbPlayer;
 
     float verticalInput;
 
 
-    public float speed = 600.0f;
+    public float speed = 15.0f;
     public float turnSpeed = 400.0f;
 
     public float gravity = 20.0f;

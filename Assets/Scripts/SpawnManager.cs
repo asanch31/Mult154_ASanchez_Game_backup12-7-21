@@ -6,11 +6,14 @@ using TMPro;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public GameObject powerUpPrefab;
+    public GameObject[] powerUpPrefab;
 
-    private float spawnRange = 10.5f;
+    private float spawnRangeX = 24.0f;
+    private float spawnRangeZ = 11.5f;
+    //safe area for player, enemies wont spawn
+    private float safeArea = 5;
     private int enemyCount;
-    private int waveNum = 1;
+    public int waveNum = 1;
 
     public TextMeshProUGUI waveText;
 
@@ -23,25 +26,51 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnWave(int enemyNum)
     {
-        Instantiate(powerUpPrefab, GenerateSpawnPosition(), powerUpPrefab.transform.rotation);
+        SpawnPowerup();
+
+        //after all current enemies all defeated move to next wave
         for (int i = 0; i < enemyNum; i++)
         {
-            print("wave number" + i);
+            
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
     }
     Vector3 GenerateSpawnPosition()
     {
-        float xPos = Random.Range(-spawnRange, spawnRange);
-        float ZPos = Random.Range(-spawnRange, spawnRange);
-        Vector3 spawnPos = new Vector3(xPos, enemyPrefab.transform.position.y, ZPos);
-        return spawnPos;
-    }
+        //create spawn position
+        float xPos = Random.Range(-spawnRangeX, spawnRangeX);
+        float ZPos = Random.Range(-spawnRangeZ, spawnRangeZ);
+        //if spawn position is within safe area, create new spawn position
+        while (xPos > -safeArea && xPos < safeArea && ZPos > -safeArea && ZPos < safeArea)
+        {
+            xPos = Random.Range(-spawnRangeX, spawnRangeX);
+            ZPos = Random.Range(-spawnRangeZ, spawnRangeZ);
+        }
+        //spawn enemy pos.
+            Vector3 spawnPos = new Vector3(xPos, enemyPrefab.transform.position.y, ZPos);
+            return spawnPos;
+        
+        
+        }
+
 
     void WaveNumber()
     {
         //how much ammo does player have
         waveText.text = waveNum.ToString();
+    }
+
+    void SpawnPowerup ()
+    {
+        int randomUP = Random.Range(0, 4);
+        print(randomUP);
+        //spawn powerup
+        GameObject powerup=Instantiate(powerUpPrefab[randomUP], GenerateSpawnPosition(), powerUpPrefab[randomUP].transform.rotation);
+
+        //
+        //Destroy powerup after 10 secs.
+        Destroy(powerup, 10f);
+
     }
 
     // Update is called once per frame
