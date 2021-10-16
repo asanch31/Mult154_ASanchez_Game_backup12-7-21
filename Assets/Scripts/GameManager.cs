@@ -7,23 +7,25 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
-    
+    public GameObject ammoBoxPrefab;
+
 
     public GameObject lose;
     public GameObject win;
     public bool gamePause = false;
     private PlayerHealth gameOver;
+    
 
 
     //supply drop timer
-    public Image collectMineral;
+    public Image supplyDropTimer;
     public GameObject collectTimer;
     
     //how long to call for ammo
     float time = 0;
     private float maxTime = 3;
     //was drop called
-    private bool sampleCollected = false;
+    public bool supplyDropped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +36,9 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         lose.SetActive(false);
         win.SetActive(false);
-
         collectTimer.SetActive(false);
+
+        
     }
 
     // Update is called once per frame
@@ -49,6 +52,18 @@ public class GameManager : MonoBehaviour
             gamePause = true;
             Pause();
         }
+
+
+        if (Input.GetKey(KeyCode.R) && gameOver.gameOver == false)
+        {
+            SupplyDropCall();
+            print("supplyCall");
+
+        }
+        else
+        {
+            resetTimer();
+        }
     }
 
     void Health()
@@ -58,10 +73,7 @@ public class GameManager : MonoBehaviour
             Pause();
             
         }
-        else
-        {
-
-        }
+       
     }
     //bring up menu, pausing game
     void Pause()
@@ -88,5 +100,56 @@ public class GameManager : MonoBehaviour
 
         gamePause = false;
 
+    }
+
+    void SupplyDropCall()
+    {
+        
+        collectTimer.SetActive(true);
+
+        InvokeRepeating("DropSupply", 1, 1);
+
+        if (supplyDropped == true)
+        {
+
+            
+            resetTimer();
+            Instantiate(ammoBoxPrefab, new Vector3(0,5,0), transform.rotation);
+        }
+    }
+    //call Drop Supply
+    public void DropSupply()
+    {
+        
+        //keep track of time while interacting with object(rock sample)
+        if (time < maxTime)
+        {
+            time++;
+            //fill timer wheel
+            supplyDropTimer.fillAmount = time / maxTime;
+        }
+        if (time == maxTime)
+        {
+
+            // was sample collected 
+            supplyDropped = true;
+
+        }
+        else
+        {
+            // Stops all repeating invokes
+            //if player moves away from object cancel repeating function, stopping timer
+
+            CancelInvoke();
+        }
+
+    }
+
+    //reset timer for collecting sample
+    private void resetTimer()
+    {
+        time = 0;
+        supplyDropped = false;
+        collectTimer.SetActive(false);
     }
 }

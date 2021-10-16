@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5911363993086632099}
   m_Layer: 0
   m_Name: ConcreteBarrier_08_v2
-  m_TagString: b3
+  m_TagString: barrierUP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,7 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject powerIndicator;
     public GameObject healthBuffUI;
 
-
+    //was supplyDropped called
+    private GameManager supplyDrop;
     //what weapon is player using
     private Weapon playerWeapon;
 
@@ -26,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         playerWeapon = GameObject.Find("Player").GetComponent<Weapon>();
+        supplyDrop =  GameObject.Find("GameManager").GetComponent<GameManager>();
+
         //Player health
         Health();
         
@@ -93,6 +96,12 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //lose health if supply dropped called
+        if(supplyDrop.supplyDropped ==true)
+        {
+            health = health - 5;
+            Health();
+        }
         Health();
         if (transform.position.y < -3)
         {

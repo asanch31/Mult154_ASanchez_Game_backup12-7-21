@@ -14,6 +14,7 @@ public class BarrierDurability : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(durability <= 0)
         {
             Destroy(gameObject);
@@ -21,6 +22,7 @@ public class BarrierDurability : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        print(durability);
         if (other.gameObject.CompareTag("Enemy"))
 
         {
@@ -28,8 +30,10 @@ public class BarrierDurability : MonoBehaviour
         }
 
     }
+
     private void OnTriggerStay(Collider other)
     {
+        print(durability);
         if (other.gameObject.CompareTag("Enemy"))
 
         {

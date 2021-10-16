@@ -47,6 +47,13 @@ public class EnemyStats : MonoBehaviour
             
         }
     }
+    private void onTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("DMGBarrier"))
+        {
+            health--;
+        }
+    }
         void Health()
         {
         

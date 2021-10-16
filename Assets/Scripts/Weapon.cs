@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
     void IncAmmo(GameObject other)
     {
 
-        other.SetActive(false);
+        Destroy(other.gameObject);
         
 
         ammoIndicator.SetActive(true);

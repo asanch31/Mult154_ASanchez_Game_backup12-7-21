@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6030397181793469995}
   m_Layer: 0
   m_Name: WoodenPlankBarrier_14_v1
-  m_TagString: b1
+  m_TagString: barrierUP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
