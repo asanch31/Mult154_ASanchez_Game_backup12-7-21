@@ -13,8 +13,9 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 15.0f;
     public float turnSpeed = 400.0f;
+  
 
-    public float gravity = 20.0f;
+
 
     void Start()
     {
@@ -40,4 +41,5 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    
 }

@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
 
         healthText.text = health.ToString() + " / " + maxHealth.ToString();
 
+   
         //player is dead
         if (health <= 0)
         {

@@ -9,6 +9,12 @@ TagManager:
   - dmgBuff
   - health
   - ammo
+  - b1
+  - b2
+  - b3
+  - DMGbarrier
+  - b4
+  - barrierUP
   layers:
   - Default
   - TransparentFX

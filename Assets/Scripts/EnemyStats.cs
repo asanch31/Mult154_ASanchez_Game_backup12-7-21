@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+    
     //how much dmg dopes player do
     private Weapon damage;
     private SpawnManager waveNum;
+    private int difficulty;
 
     //private float fullHealth;
-    private float health = 3;
+    private float health = 1;
 
     public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+       
+
         waveNum = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        int incDif = waveNum.waveNum / 3;
+        
+        //retrieve difficulty var from spawnmanager
+        difficulty = waveNum.difficulty;
+        int incDif = waveNum.waveNum / difficulty;
         
 
         health = health + (health * incDif);
@@ -44,6 +49,7 @@ public class EnemyStats : MonoBehaviour
     }
         void Health()
         {
+        
             if (health == 0)
             {
          

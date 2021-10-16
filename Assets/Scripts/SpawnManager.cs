@@ -5,7 +5,9 @@ using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
+    public int difficulty = 3;
     public GameObject enemyPrefab;
+    public GameObject bossPrefab;
     public GameObject[] powerUpPrefab;
 
     private float spawnRangeX = 24.0f;
@@ -14,6 +16,7 @@ public class SpawnManager : MonoBehaviour
     private float safeArea = 5;
     private int enemyCount;
     public int waveNum = 1;
+    public int enemySpawns = 1;
 
     public TextMeshProUGUI waveText;
 
@@ -21,6 +24,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         SpawnWave(waveNum);
     }
 
@@ -62,8 +66,8 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnPowerup ()
     {
-        int randomUP = Random.Range(0, 4);
-        print(randomUP);
+        int randomUP = Random.Range(0, powerUpPrefab.Length);
+        
         //spawn powerup
         GameObject powerup=Instantiate(powerUpPrefab[randomUP], GenerateSpawnPosition(), powerUpPrefab[randomUP].transform.rotation);
 
@@ -82,7 +86,24 @@ public class SpawnManager : MonoBehaviour
         {
             
             waveNum++;
-            SpawnWave(waveNum);
+            enemySpawns++;
+            
+            if(enemySpawns==difficulty)
+            {
+                int numBoss = waveNum / difficulty;
+                
+                while (numBoss >= 1)
+                {
+                    //after 10 (current 3;testing reasons) rounds summon boss
+                    Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
+                    numBoss--;
+                    SpawnWave(numBoss);
+                    
+                    enemySpawns = 0;
+                }
+
+            }
+            SpawnWave(enemySpawns);
         }
     }
 }
