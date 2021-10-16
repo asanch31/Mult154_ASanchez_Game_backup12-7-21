@@ -31,13 +31,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        verticalInput = Input.GetAxis("Vertical");
+        if (playerCtrl.gameOver == false)
+        {
+            
+            verticalInput = Input.GetAxis("Vertical");
         
             float turn = Input.GetAxis("Horizontal");
             transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
             transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
 
-        
+
+        }
 
 
     }

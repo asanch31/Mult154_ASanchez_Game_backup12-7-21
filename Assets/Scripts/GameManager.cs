@@ -13,14 +13,29 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public bool gamePause = false;
     private PlayerHealth gameOver;
+
+
+    //supply drop timer
+    public Image collectMineral;
+    public GameObject collectTimer;
+    
+    //how long to call for ammo
+    float time = 0;
+    private float maxTime = 3;
+    //was drop called
+    private bool sampleCollected = false;
+
     // Start is called before the first frame update
     void Start()
     {
         gameOver= GameObject.Find("Player").GetComponent<PlayerHealth>();
+        
 
         pauseMenu.SetActive(false);
         lose.SetActive(false);
         win.SetActive(false);
+
+        collectTimer.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,6 +56,7 @@ public class GameManager : MonoBehaviour
         if(gameOver.gameOver==true)
         {
             Pause();
+            
         }
         else
         {
