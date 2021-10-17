@@ -44,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
             
         {
             health = health - 1;
+            transform.Translate(Vector3.forward * -1);
             Health();
         }
 
@@ -54,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
 
         }
     }
+  
     
     void Health()
     {

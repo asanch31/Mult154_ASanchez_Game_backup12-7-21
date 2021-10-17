@@ -11,7 +11,7 @@ public class EnemyStats : MonoBehaviour
     private int difficulty;
 
     //private float fullHealth;
-    private float health = 1;
+    public float health = 1;
 
     public bool dead = false;
     // Start is called before the first frame update
@@ -38,22 +38,21 @@ public class EnemyStats : MonoBehaviour
         if (other.gameObject.CompareTag("attack"))
         {
             health--;
-            
+
             Destroy(other.gameObject);
             Health();
-           
-            //damage monster
 
-            
+            //damage monster
         }
-    }
-    private void onTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("DMGBarrier"))
-        {
-            health--;
+            if (other.gameObject.CompareTag("DMG"))
+            {
+                print("barrier");
+                health--;
+                Health();
         }
+        
     }
+    
         void Health()
         {
         

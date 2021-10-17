@@ -76,19 +76,19 @@ public class PlayerInventory : MonoBehaviour
         //player interaction with barrier powerups
         if (other.gameObject.CompareTag("b1"))
         {
-            print("POWERUP WALL)");
+            
             barrier1++;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("b2"))
         {
-            print("POWERUP WALL)");
+            
             barrier2++;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("b3"))
         {
-            print("POWERUP WALL)");
+            
             barrier3++;
             Destroy(other.gameObject);
         }
@@ -97,7 +97,7 @@ public class PlayerInventory : MonoBehaviour
         //if player interacts with barbedwire potion
         if (other.CompareTag("b4"))
         {
-            print("POWERUP WALL)");
+           
             barrier4++;
             Destroy(other.gameObject);
         }

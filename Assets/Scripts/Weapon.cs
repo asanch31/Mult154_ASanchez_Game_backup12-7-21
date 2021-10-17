@@ -9,30 +9,42 @@ public class Weapon : MonoBehaviour
 
     //public GameObject weapon;
     public TextMeshProUGUI ammoText;
-    public GameObject ammoIndicator;
+    public GameObject ammoRefillIndicator;
+    public TextMeshProUGUI grenadeText;
+     
     
-
-    public float bulletSpeed = 20;
     public Rigidbody[] bulletPrefab;
+    public Rigidbody grenadePrefab;
     private string[] gunEquip = new string[] {"Pistol"};
-
     public int bulletIndex = 0;
     public int ammo = 50;
     private int maxAmmo = 200;
-    private int reload=25;
+    private int reload = 25;
+
+    public int grenadeAmmo = 5;
+    private int maxSoundAmount = 5;
+    public Vector3 grenadePos;
+
+    
     public int dmg = 1;
+
+    public delegate void GrenadeThrow(Vector3 pos);
+    public static event GrenadeThrow GrenadeThrownDown;
+    public bool grenadeThrown;
 
     // Start is called before the first frame update
     void Start()
     {
         playerCtrl = GameObject.Find("GameManager").GetComponent<GameManager>();
         amountAmmo();
+        grenadeThrown = false;
     }
 
     void amountAmmo()
     {
         //how much ammo does player have
         ammoText.text = "Ammo: " + ammo.ToString();
+        grenadeText.text = "Grenades: " + grenadeAmmo.ToString();
     }
 
     void Fire()
@@ -40,6 +52,7 @@ public class Weapon : MonoBehaviour
         //if player has ammo which bullet prefab is equiped && pick is not equiped
         if (ammo > 0 && playerCtrl.gamePause ==false)
         {
+            float bulletSpeed = 25;
             Rigidbody bullet = Instantiate(bulletPrefab[bulletIndex], transform.position + (transform.forward) + new Vector3 (0,1,0), Quaternion.identity);
 
             bullet.velocity = transform.forward * bulletSpeed;
@@ -50,6 +63,32 @@ public class Weapon : MonoBehaviour
             ammo = ammo - 1;
             amountAmmo();
         }
+       
+    }
+    void ThrowGrenade()
+    {
+        
+        if (grenadeAmmo > 0 && grenadeThrown==false && playerCtrl.gamePause == false)
+        {
+            float grenadeSpeed = 1;
+            grenadePos = transform.position + (transform.forward * 10);
+            Rigidbody grenade = Instantiate(grenadePrefab, grenadePos, transform.rotation);
+            grenade.velocity = transform.forward * grenadeSpeed;
+
+            grenadePos = grenade.transform.position;
+            GrenadeThrownDown?.Invoke(grenadePos);
+            //Destroy bullet after 3 secs.
+            Destroy(grenade.gameObject, 10f);
+            StartCoroutine(GrenadeThrown());
+            grenadeThrown = true;
+            grenadeAmmo = grenadeAmmo - 1;
+            amountAmmo();
+        }
+    }
+    IEnumerator GrenadeThrown()
+    {
+        yield return new WaitForSeconds(10);
+        grenadeThrown = false;
     }
     void Update()
     {
@@ -71,6 +110,13 @@ public class Weapon : MonoBehaviour
            
         }
 
+        if (Input.GetKeyUp(KeyCode.Mouse1) && playerCtrl.gamePause == false)
+        {
+
+            ThrowGrenade();
+
+        }
+
 
     }
 
@@ -88,7 +134,7 @@ public class Weapon : MonoBehaviour
         Destroy(other.gameObject);
         
 
-        ammoIndicator.SetActive(true);
+        ammoRefillIndicator.SetActive(true);
         //increase ammo amount
         ammo = ammo + reload;
         //ammo less than or equals ammoMax

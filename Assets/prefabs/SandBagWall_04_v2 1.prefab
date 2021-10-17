@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3380269596347208565}
   - component: {fileID: 652412817554859967}
   - component: {fileID: 4057891300300876359}
-  - component: {fileID: -1340009341762736798}
   m_Layer: 0
   m_Name: SandBagWall_04_v2 1
   m_TagString: b2
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1300742528104613482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.78, y: 0.032598056, z: -5.5}
-  m_LocalScale: {x: 0.3, y: 2, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 1.2, z: 0.6}
   m_Children:
   - {fileID: 1409772143043160283}
   m_Father: {fileID: 0}
@@ -97,18 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 0.8, z: 1}
   m_Center: {x: 0.095676005, y: 0.26517433, z: 0.0054409206}
---- !u!114 &-1340009341762736798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300742528104613482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e387a65d50dbc943a0ba9dabbc2fc77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4836021826814419341
 GameObject:
   m_ObjectHideFlags: 0

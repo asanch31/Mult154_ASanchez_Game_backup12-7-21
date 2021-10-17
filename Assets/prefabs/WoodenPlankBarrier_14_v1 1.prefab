@@ -4792,7 +4792,6 @@ GameObject:
   - component: {fileID: 7181926326360989145}
   - component: {fileID: 4922334031541250323}
   - component: {fileID: 5307938740962746187}
-  - component: {fileID: -7084290847779288825}
   m_Layer: 0
   m_Name: WoodenPlankBarrier_14_v1 1
   m_TagString: b1
@@ -4809,7 +4808,7 @@ Transform:
   m_GameObject: {fileID: 6867805576562903238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.24, y: 0.016688168, z: 5.08}
-  m_LocalScale: {x: 0.3, y: 2, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 1.2, z: 0.6}
   m_Children:
   - {fileID: 7857039317856635745}
   m_Father: {fileID: 0}
@@ -4877,15 +4876,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1.6710742, z: 2}
   m_Center: {x: 0.014528871, y: 0.81884885, z: -0.49509445}
---- !u!114 &-7084290847779288825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6867805576562903238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e387a65d50dbc943a0ba9dabbc2fc77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

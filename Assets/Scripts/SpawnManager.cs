@@ -72,8 +72,8 @@ public class SpawnManager : MonoBehaviour
         GameObject powerup=Instantiate(powerUpPrefab[randomUP], GenerateSpawnPosition(), powerUpPrefab[randomUP].transform.rotation);
 
         //
-        //Destroy powerup after 10 secs.
-        Destroy(powerup, 10f);
+        //Destroy powerup after 20 secs.
+        Destroy(powerup, 20f);
 
     }
 

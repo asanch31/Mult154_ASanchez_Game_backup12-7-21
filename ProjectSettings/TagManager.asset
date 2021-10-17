@@ -12,9 +12,9 @@ TagManager:
   - b1
   - b2
   - b3
-  - DMGbarrier
   - b4
   - barrierUP
+  - DMG
   layers:
   - Default
   - TransparentFX
@@ -22,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - GROUND
   - 
   - 
   - 

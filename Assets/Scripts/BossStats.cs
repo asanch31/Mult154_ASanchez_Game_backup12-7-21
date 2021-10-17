@@ -7,6 +7,7 @@ public class BossStats : MonoBehaviour
     //how much dmg dopes player do
     private Weapon damage;
     private SpawnManager waveNum;
+    private int difficulty;
 
     //private float fullHealth;
     private float health = 2;
@@ -18,6 +19,7 @@ public class BossStats : MonoBehaviour
 
 
         waveNum = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        difficulty = waveNum.difficulty;
         int incDif = waveNum.waveNum / waveNum.difficulty;
 
 
@@ -37,9 +39,12 @@ public class BossStats : MonoBehaviour
             Destroy(other.gameObject);
             Health();
 
-            //damage monster
-
-
+        }
+        if (other.gameObject.CompareTag("DMG"))
+        {
+            print("barrier");
+            health--;
+            Health();
         }
     }
     void Health()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BarrierDurability : MonoBehaviour
 {
-    private float durability = 5;
+    private float durability = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class BarrierDurability : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print(durability);
+        
         if (other.gameObject.CompareTag("Enemy"))
 
         {
@@ -33,7 +33,7 @@ public class BarrierDurability : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        print(durability);
+       
         if (other.gameObject.CompareTag("Enemy"))
 
         {
