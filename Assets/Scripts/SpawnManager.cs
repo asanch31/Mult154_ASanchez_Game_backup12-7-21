@@ -5,7 +5,7 @@ using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
-    public int difficulty = 5;
+    public int difficulty = 3;
     public GameObject enemyPrefab;
     public GameObject bossPrefab;
     public GameObject[] powerUpPrefab;
@@ -94,7 +94,7 @@ public class SpawnManager : MonoBehaviour
                 
                 while (numBoss >= 1)
                 {
-                    //after 10 (current 5;testing reasons) rounds summon boss
+                    //after 10 (current 3;testing reasons) rounds summon boss
                     Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
                     numBoss--;
                     SpawnWave(numBoss);
