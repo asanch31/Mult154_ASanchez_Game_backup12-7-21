@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         if (gameOver.gameOver==true)
         {
             lose.SetActive(true);
-            gamePause = true;
+            //gamePause = true;
         }
         if (gamePause == true)
         {

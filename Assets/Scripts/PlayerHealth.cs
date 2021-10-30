@@ -24,12 +24,14 @@ public class PlayerHealth : MonoBehaviour
 
     public bool gameOver = false;
     private Animator enemyAnim;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         playerWeapon = GameObject.Find("Player").GetComponent<Weapon>();
         supplyDrop =  GameObject.Find("GameManager").GetComponent<GameManager>();
+        anim = GetComponent<Animator>();
 
         //Player health
         Health();
@@ -48,7 +50,11 @@ public class PlayerHealth : MonoBehaviour
         {
             enemyAnim.SetTrigger("Attack");
             health = health - 1;
-            transform.Translate(Vector3.forward * -1);
+            if (gameOver == false)
+            {
+                transform.Translate(Vector3.forward * -1);
+            }
+
             Health();
         }
         if (other.gameObject.CompareTag("Boss"))
@@ -80,8 +86,12 @@ public class PlayerHealth : MonoBehaviour
         //player is dead
         if (health <= 0)
         {
+            
             health = 0;
             gameOver = true;
+            anim.SetBool("Dead", true);
+            print("dead");
+            
 
         }
     }
@@ -111,13 +121,15 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Health(); 
+
         //lose health if supply dropped called
-        if(supplyDrop.supplyDropped ==true)
+        if (supplyDrop.supplyDropped ==true)
         {
             health = health - 5;
             Health();
         }
-        Health();
+        
         if (transform.position.y < -3)
         {
             transform.position = new Vector3(0, 1, 0);
