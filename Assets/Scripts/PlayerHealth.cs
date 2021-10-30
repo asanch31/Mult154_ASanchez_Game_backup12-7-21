@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public Image healthBar;
-    public float health = 30;
-    public float maxHealth = 30;
+    public int health = 30;
+    public int maxHealth = 30;
     private int mxHealthBoost = 5;
 
     public GameObject powerIndicator;
@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
 
         {
             enemyAnim.SetTrigger("Attack");
-            print(other.name);
+            
             health = health - 1;
             transform.Translate(Vector3.forward * -1);
             Health();
@@ -88,20 +88,20 @@ public class PlayerHealth : MonoBehaviour
     {
 
         other.SetActive(false);
-        
 
+        maxHealth = maxHealth + mxHealthBoost;
         powerIndicator.SetActive(true);
         //increase health 
         health = health + maxHealth / 2;
         //if health goes above maxhealth turn on Buff icon
         if (health > maxHealth)
         {
-            healthBuffUI.SetActive(true);
+            health = maxHealth;
 
         }
 
         //maxHealth receives small boost with each potion, boost is permanent
-        maxHealth = maxHealth + mxHealthBoost;
+        
         Health();
 
         //start timer for how long powerup last

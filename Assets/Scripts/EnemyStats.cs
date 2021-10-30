@@ -67,7 +67,7 @@ public class EnemyStats : MonoBehaviour
     }
     IEnumerator DeathAnim()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         Destroy(gameObject);
 
