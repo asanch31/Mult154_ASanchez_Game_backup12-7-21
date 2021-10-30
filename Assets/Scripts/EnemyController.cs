@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private Enemy bot;
     private Vector3 grenadePos;
     private Weapon grenadeThrown;
-   
+    
 
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         
         bot = GetComponent<Enemy>();
         Weapon.GrenadeThrownDown += GrenadeReady;
-
+        
     }
 
     void GrenadeReady(Vector3 pos)
@@ -45,12 +45,12 @@ public class EnemyController : MonoBehaviour
             
             if (bot.CanSeeTarget())
             {
-                print("CanCMe");
+                
                 bot.Pursue();
             }
             else
             {
-                print("wander");
+               
                 bot.Pursue();
             }
         }

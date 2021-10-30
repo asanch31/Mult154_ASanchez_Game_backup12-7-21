@@ -23,10 +23,10 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         PlaceBarrier();
-        barrierText[0].text = "ConcreteWall: " + barrier1;
-        barrierText[1].text = "SandBags: " + barrier2;
-        barrierText[2].text = "PlankWall: " + barrier3;
-        barrierText[3].text = "BarbedWireWall: " + barrier4;
+        barrierText[0].text = "" + barrier1;
+        barrierText[1].text = "" + barrier2;
+        barrierText[2].text = "" + barrier3;
+        barrierText[3].text = "" + barrier4;
 
     }
     void PlaceBarrier()

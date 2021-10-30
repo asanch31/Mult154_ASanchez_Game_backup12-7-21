@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject ammoBoxPrefab;
+   
 
 
     public GameObject lose;
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
         
 
         pauseMenu.SetActive(false);
+        
+
         lose.SetActive(false);
         win.SetActive(false);
         collectTimer.SetActive(false);
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.R) && gameOver.gameOver == false)
         {
             SupplyDropCall();
-            print("supplyCall");
+            
 
         }
         else
@@ -101,6 +104,8 @@ public class GameManager : MonoBehaviour
         gamePause = false;
 
     }
+
+   
 
     void SupplyDropCall()
     {

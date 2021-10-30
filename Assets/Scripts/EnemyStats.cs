@@ -14,10 +14,12 @@ public class EnemyStats : MonoBehaviour
     public float health = 1;
 
     public bool dead = false;
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        anim = GetComponent<Animator>();
 
         waveNum = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         
@@ -52,18 +54,24 @@ public class EnemyStats : MonoBehaviour
         }
         
     }
-    
-        void Health()
+
+    void Health()
+    {
+        if (health == 0)
         {
-        
-            if (health == 0)
-            {
-         
-            Destroy(gameObject);
-            
-            }
+            anim.SetBool("Dead", true);
+            StartCoroutine(DeathAnim());
 
         }
+
+    }
+    IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(2);
+
+        Destroy(gameObject);
+
+    }
 
         // Update is called once per frame
         void Update()

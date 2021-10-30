@@ -4792,9 +4792,10 @@ GameObject:
   - component: {fileID: 8048162280642647201}
   - component: {fileID: 8048162280642647202}
   - component: {fileID: 1086959570057984598}
+  - component: {fileID: 5651146035776822518}
   m_Layer: 0
   m_Name: ConcreteBarrier_08_v2 1
-  m_TagString: b3
+  m_TagString: b1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4876,3 +4877,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 1, z: 2}
   m_Center: {x: -0.14895558, y: 0.49000025, z: 0.2298831}
+--- !u!114 &5651146035776822518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048162280642647132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ac127e0c2f0c042951740b2b31a4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

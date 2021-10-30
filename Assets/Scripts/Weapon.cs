@@ -11,8 +11,10 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI ammoText;
     public GameObject ammoRefillIndicator;
     public TextMeshProUGUI grenadeText;
-     
-    
+
+
+    private Animator anim;
+
     public Rigidbody[] bulletPrefab;
     public Rigidbody grenadePrefab;
     private string[] gunEquip = new string[] {"Pistol"};
@@ -36,6 +38,8 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         playerCtrl = GameObject.Find("GameManager").GetComponent<GameManager>();
+        anim = GetComponent<Animator>();
+
         amountAmmo();
         grenadeThrown = false;
     }
@@ -52,6 +56,7 @@ public class Weapon : MonoBehaviour
         //if player has ammo which bullet prefab is equiped && pick is not equiped
         if (ammo > 0 && playerCtrl.gamePause ==false)
         {
+            anim.SetTrigger("Attack"); 
             float bulletSpeed = 25;
             Rigidbody bullet = Instantiate(bulletPrefab[bulletIndex], transform.position + (transform.forward) + new Vector3 (0,1,0), Quaternion.identity);
 
@@ -77,8 +82,8 @@ public class Weapon : MonoBehaviour
 
             grenadePos = grenade.transform.position;
             GrenadeThrownDown?.Invoke(grenadePos);
-            //Destroy bullet after 3 secs.
-            Destroy(grenade.gameObject, 10f);
+            //Destroy bullet after 5 secs.
+            Destroy(grenade.gameObject, 5f);
             StartCoroutine(GrenadeThrown());
             grenadeThrown = true;
             grenadeAmmo = grenadeAmmo - 1;
@@ -87,7 +92,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator GrenadeThrown()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         grenadeThrown = false;
     }
     void Update()
@@ -137,6 +142,7 @@ public class Weapon : MonoBehaviour
         ammoRefillIndicator.SetActive(true);
         //increase ammo amount
         ammo = ammo + reload;
+        grenadeAmmo = grenadeAmmo + 1;
         //ammo less than or equals ammoMax
         if (ammo> maxAmmo)
         {

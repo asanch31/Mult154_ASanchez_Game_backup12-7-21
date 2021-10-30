@@ -13,11 +13,16 @@ public class BossStats : MonoBehaviour
     private float health = 2;
 
     public bool dead = false;
+    private Animator anim;
+
+    
+
+
     // Start is called before the first frame update
     void Start()
     {
 
-
+        anim = GetComponent<Animator>();
         waveNum = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         difficulty = waveNum.difficulty;
         int incDif = waveNum.waveNum / waveNum.difficulty;
@@ -42,7 +47,7 @@ public class BossStats : MonoBehaviour
         }
         if (other.gameObject.CompareTag("DMG"))
         {
-            print("barrier");
+            
             health--;
             Health();
         }
@@ -51,13 +56,20 @@ public class BossStats : MonoBehaviour
     {
         if (health == 0)
         {
-
-            Destroy(gameObject);
+            anim.SetBool("Dead", true);
+            StartCoroutine(DeathAnim());
 
         }
 
     }
+    IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(2);
 
+        Destroy(gameObject);
+
+
+    }
     // Update is called once per frame
     void Update()
     {

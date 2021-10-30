@@ -15,6 +15,7 @@ TagManager:
   - b4
   - barrierUP
   - DMG
+  - Boss
   layers:
   - Default
   - TransparentFX

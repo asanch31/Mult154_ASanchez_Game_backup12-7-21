@@ -5,11 +5,14 @@ using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
-    public int difficulty = 3;
+    //difficulty, waves before boss
+    public int difficulty = 5;
+
     public GameObject enemyPrefab;
     public GameObject bossPrefab;
     public GameObject[] powerUpPrefab;
 
+    //spawning boundaries
     private float spawnRangeX = 24.0f;
     private float spawnRangeZ = 11.5f;
     //safe area for player, enemies wont spawn

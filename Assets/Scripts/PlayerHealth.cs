@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public TextMeshProUGUI healthText;
 
     public bool gameOver = false;
+    private Animator enemyAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +39,22 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        enemyAnim = other.GetComponent<Animator>();
 
         //player interaction with ememy or hazards
         if (other.gameObject.CompareTag("Enemy"))
             
         {
+            enemyAnim.SetTrigger("Attack");
+            health = health - 1;
+            transform.Translate(Vector3.forward * -1);
+            Health();
+        }
+        if (other.gameObject.CompareTag("Boss"))
+
+        {
+            enemyAnim.SetTrigger("Attack");
+            print(other.name);
             health = health - 1;
             transform.Translate(Vector3.forward * -1);
             Health();
