@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar;
     public int health = 30;
     public int maxHealth = 30;
+   
     private int mxHealthBoost = 5;
 
     public GameObject powerIndicator;
@@ -71,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
     
     void Health()
     {
-        healthBar.fillAmount = health / maxHealth;
+        healthBar.fillAmount = (float)health / maxHealth;
 
         healthText.text = health.ToString() + " / " + maxHealth.ToString();
 
