@@ -54,8 +54,9 @@ public class PlayerController : MonoBehaviour
         x = Random.Range(0, 2);
         anim.SetInteger("IdleAnim", x);
         time = 0;
-        if (translation<.01 || translation>-.01)
+        if (translation<.01 && translation>-.01)
         {
+            print(translation);
             InvokeRepeating("IdleAnim", 1, 1);
         }
     }
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
     private void IdleAnim()
     {
         
-        //keep track of time while interacting with object(rock sample)
+        //keep track of time while idle
         if (time < maxTime)
         {
             time++;          

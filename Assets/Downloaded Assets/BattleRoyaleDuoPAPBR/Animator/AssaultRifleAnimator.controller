@@ -159,7 +159,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IdleTimer
     m_EventTreshold: 0
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: IdleAnim
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -366,7 +366,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
@@ -602,7 +602,7 @@ AnimatorStateMachine:
     m_Position: {x: 371.2611, y: 105.64667, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3201923179078654877}
-    m_Position: {x: 540.80896, y: 213.54077, z: 0}
+    m_Position: {x: 540, y: 210, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
