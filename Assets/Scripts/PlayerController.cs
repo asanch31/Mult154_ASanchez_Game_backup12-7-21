@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private PlayerHealth playerCtrl;
+    private Weapon playerFiring;
 
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
@@ -15,20 +16,21 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     private float time = 0;
-    private float maxTime = 3;
+    private float maxTime = 5;
 
     private int x;
 
     private void Start()
     {
         playerCtrl = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        playerFiring = GameObject.Find("Player").GetComponent<Weapon>();
         anim = GetComponent<Animator>();
 
         rgBody = GetComponent<Rigidbody>();
     }
     void Update()
     {
-        
+
 
         // Get the horizontal and vertical axis.
         // By default they are mapped to the arrow keys.
@@ -43,41 +45,50 @@ public class PlayerController : MonoBehaviour
         rotate += rotation;
 
         anim.SetFloat("Movement", translation);
-        
+
         // Move translation along the object's z-axis
         transform.Translate(0, 0, translation);
 
         // Rotate around our y-axis
         transform.Rotate(0, rotation, 0);
-        
-        
+
         x = Random.Range(0, 2);
         anim.SetInteger("IdleAnim", x);
-        time = 0;
-        if (translation<.01 && translation>-.01)
+
+        if (translation < .01 && translation > -.01)
         {
-            print(translation);
-            InvokeRepeating("IdleAnim", 1, 1);
+            if (rotation < .1 && rotation > -.1)
+            {
+                InvokeRepeating("IdleAnim", 1, 1);
+            }
+        }
+        else
+        {
+            time = 0;
+            
         }
     }
 
 
     private void IdleAnim()
     {
-        
-        //keep track of time while idle
-        if (time < maxTime)
+        if (anim.GetBool("Firing") == true)
         {
-            time++;          
-        }
-        if (time == maxTime)
-        {
-            
-            print(time);
-            // idle timer-player does flip
-            anim.SetTrigger("IdleTimer");
             time = 0;
-            CancelInvoke();
+        }
+        //keep track of time while idle
+        else if (time < maxTime && anim.GetBool("Firing") == false)
+        {
+            time++;
+            if (time == maxTime)
+            {
+
+                // idle timer-player does flip
+                anim.SetTrigger("IdleTimer");
+                time = 0;
+                CancelInvoke();
+
+            }
         }
     }
     private void FixedUpdate()

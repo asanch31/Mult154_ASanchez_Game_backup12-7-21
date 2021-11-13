@@ -22,9 +22,9 @@ public class Weapon : MonoBehaviour
     public int ammo = 50;
     private int maxAmmo = 200;
     private int reload = 25;
-
+    public bool firing = false;
     public int grenadeAmmo = 5;
-    private int maxSoundAmount = 5;
+   // private int maxSoundAmount = 5;
     public Vector3 grenadePos;
 
     
@@ -56,7 +56,10 @@ public class Weapon : MonoBehaviour
         //if player has ammo which bullet prefab is equiped && pick is not equiped
         if (ammo > 0 && playerCtrl.gamePause ==false)
         {
-            anim.SetTrigger("Attack"); 
+
+            anim.SetTrigger("Attack");
+            anim.SetBool("Firing", true);
+            StartCoroutine(NotFiring());
             float bulletSpeed = 25;
             Rigidbody bullet = Instantiate(bulletPrefab[bulletIndex], transform.position + (transform.forward) + new Vector3 (0,1,0), Quaternion.identity);
 
@@ -70,6 +73,12 @@ public class Weapon : MonoBehaviour
         }
        
     }
+    IEnumerator NotFiring()
+    {
+        yield return new WaitForSeconds(2);
+        anim.SetBool("Firing", false);
+    }
+
     void ThrowGrenade()
     {
         
@@ -112,16 +121,19 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0) && playerCtrl.gamePause == false)
         {
             Fire();
-           
+            firing = true;
         }
-
+        else
+        {
+            firing = false;
+        }
         if (Input.GetKeyUp(KeyCode.Mouse1) && playerCtrl.gamePause == false)
         {
 
             ThrowGrenade();
 
         }
-
+        
 
     }
 

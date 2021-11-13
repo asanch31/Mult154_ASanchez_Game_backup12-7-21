@@ -6,8 +6,7 @@ public class CharacterBoundary : MonoBehaviour
 {
     private float minX, maxX, minZ, maxZ;
 
-    private float zWallBoundary = 16;
-    private float xWallBoundary = 31;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,22 +19,12 @@ public class CharacterBoundary : MonoBehaviour
         
 
         //set boundaries based on screen size
-        minX = bottomCorner.x;
-        maxX = topCorner.x;
-        minZ = bottomCorner.z;
-        maxZ = topCorner.z;
+        minX = bottomCorner.x+1;
+        maxX = topCorner.x-1;
+        minZ = bottomCorner.z+1;
+        maxZ = topCorner.z-1;
         
-        //if screen is wider/higher than wall set boundary to walls 
-        if (maxX > xWallBoundary)
-        {
-            maxX = xWallBoundary;
-            minX = -xWallBoundary;
-        }
-        if(maxZ > zWallBoundary)
-        {
-            maxZ = zWallBoundary;
-            minZ = zWallBoundary;
-        }
+        
     }
 
     // Update is called once per frame
