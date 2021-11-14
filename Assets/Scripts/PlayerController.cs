@@ -54,30 +54,25 @@ public class PlayerController : MonoBehaviour
 
         x = Random.Range(0, 2);
         anim.SetInteger("IdleAnim", x);
-
-        if (translation < .01 && translation > -.01)
-        {
-            if (rotation < .1 && rotation > -.1)
+        print(time);
+        if (translation < .01 && translation > -.01 && rotation < .1 && rotation > -.1)
             {
+                
                 InvokeRepeating("IdleAnim", 1, 1);
             }
-        }
+        
         else
         {
             time = 0;
-            
         }
     }
 
 
+
     private void IdleAnim()
     {
-        if (anim.GetBool("Firing") == true)
-        {
-            time = 0;
-        }
         //keep track of time while idle
-        else if (time < maxTime && anim.GetBool("Firing") == false)
+        if (time < maxTime && anim.GetBool("Firing") == false)
         {
             time++;
             if (time == maxTime)
@@ -89,6 +84,11 @@ public class PlayerController : MonoBehaviour
                 CancelInvoke();
 
             }
+        }
+        else
+        {
+            time = 0;
+            CancelInvoke();
         }
     }
     private void FixedUpdate()
