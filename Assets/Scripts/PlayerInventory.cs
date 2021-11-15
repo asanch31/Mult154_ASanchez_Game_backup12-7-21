@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
     public GameObject[] barrier;
     public TextMeshProUGUI [] barrierText;
 
-    private int arrayLength = 3;
+    //private int arrayLength = 3;
 
 
 
