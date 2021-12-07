@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
             anim.SetBool("Firing", true);
             StartCoroutine(NotFiring());
             float bulletSpeed = 25;
-            Rigidbody bullet = Instantiate(bulletPrefab[bulletIndex], transform.position + (transform.forward) + new Vector3 (0,1,0), Quaternion.identity);
+            Rigidbody bullet = Instantiate(bulletPrefab[bulletIndex], transform.position + (transform.forward) + new Vector3 (0,1,0), transform.rotation * Quaternion.Euler(1,270,1));
 
             bullet.velocity = transform.forward * bulletSpeed;
 

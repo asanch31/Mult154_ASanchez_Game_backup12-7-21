@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0, rotation, 0);
 
         x = Random.Range(0, 2);
-        anim.SetInteger("IdleAnim", x);
-        print(time);
+        
+       
         if (translation < .01 && translation > -.01 && rotation < .1 && rotation > -.1)
             {
                 

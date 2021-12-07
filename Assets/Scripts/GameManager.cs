@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public bool gamePause = false;
     private PlayerHealth gameOver;
-    
 
+    public AudioSource AudioPlayer;
 
     //supply drop timer
     public Image supplyDropTimer;
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameOver= GameObject.Find("Player").GetComponent<PlayerHealth>();
-        
+        AudioPlayer = GetComponent<AudioSource>();
 
         pauseMenu.SetActive(false);
         

@@ -23,11 +23,15 @@ public class SpawnManager : MonoBehaviour
 
     public TextMeshProUGUI waveText;
 
+    //audio source sounds
+    private AudioSource ASPlayer;
+    
+    public AudioClip bossSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ASPlayer = GetComponent<AudioSource>();
         SpawnWave(waveNum);
     }
 
@@ -91,8 +95,9 @@ public class SpawnManager : MonoBehaviour
             waveNum++;
             enemySpawns++;
             
-            if(enemySpawns==difficulty)
+            if (enemySpawns==difficulty)
             {
+                ASPlayer.PlayOneShot(bossSpawn, 1.0f);
                 int numBoss = waveNum / difficulty;
                 
                 while (numBoss >= 1)
@@ -103,6 +108,7 @@ public class SpawnManager : MonoBehaviour
                     SpawnWave(numBoss);
                     
                     enemySpawns = 0;
+                    
                 }
 
             }

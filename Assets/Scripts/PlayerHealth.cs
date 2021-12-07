@@ -15,6 +15,9 @@ public class PlayerHealth : MonoBehaviour
     public GameObject powerIndicator;
     public GameObject healthBuffUI;
 
+    //audio control
+    private AudioSource ASPlayer;
+    public AudioClip zombieBite;
     //was supplyDropped called
     private GameManager supplyDrop;
     //what weapon is player using
@@ -30,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         playerWeapon = GameObject.Find("Player").GetComponent<Weapon>();
+        ASPlayer = GetComponent<AudioSource>();
         supplyDrop =  GameObject.Find("GameManager").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
 
@@ -48,6 +52,8 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
             
         {
+            //player is attack
+            ASPlayer.PlayOneShot(zombieBite, 1.0f);
             enemyAnim.SetTrigger("Attack");
             health = health - 1;
             if (gameOver == false)

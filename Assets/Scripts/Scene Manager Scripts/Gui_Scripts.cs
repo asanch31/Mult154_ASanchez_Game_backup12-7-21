@@ -8,7 +8,7 @@ public class Gui_Scripts : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        print("Quit");
+        
     }
     public void Restart()
     {
@@ -18,5 +18,9 @@ public class Gui_Scripts : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
